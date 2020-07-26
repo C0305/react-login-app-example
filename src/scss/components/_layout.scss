@@ -34,11 +34,20 @@
           margin-block-start: 0;
           margin-block-end: 0;
 
+          .active {
+            background-color: $header__item--hover;
+
+            a {
+              color: $header__item-text--hover !important;
+            }
+          }
+
           li {
             margin-left: 1rem;
             display: flex;
             text-align: center;
             padding: 0 .5rem;
+            cursor: pointer;
 
             a {
               min-height: 100%;

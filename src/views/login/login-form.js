@@ -1,20 +1,29 @@
 import React, {useState} from "react";
+import {useDispatch} from "react-redux";
 
-function LoginForm() {
+import {login} from "../../store/actions";
+
+
+const LoginForm = () => {
 
     const [isValidUsername, setIsValidUsername] = useState(false)
     const [isValidPassword, setIsValidPassword] = useState(false)
+    const dispatch = useDispatch()
 
-    const regex = RegExp(/^[a-zA-Z0-9!"$%&/]{8,20}$/);
 
-    function validateUsername({target}) {
-        const val = target.value
+    const waitOneSec = (callback) => {
         setTimeout(() => {
-            setIsValidUsername(regex.test(val))
+            callback
         }, 1000)
     }
 
-    function validPassword({target}) {
+    const validateUsername = ({target}) => {
+        const regex = RegExp(/^[a-zA-Z0-9!"$%&/]{8,20}$/);
+        const val = target.value
+        waitOneSec(setIsValidUsername(regex.test(val)))
+    }
+
+    const validPassword = ({target}) => {
         const reg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!"$%&])[a-zA-Z0-9!"$%&]{8,20}$/
 
 
@@ -38,16 +47,15 @@ function LoginForm() {
         setIsValidPassword(reg.test(target.value) && sequenceTest)
     }
 
+    const handleSubmit = event => {
+        event.preventDefault()
+        dispatch(login(event.target.username.value))
+    }
 
-    function isValid() {
+    const isValid = () => {
         return !(isValidUsername && isValidPassword)
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log(event.target.username.value)
-        console.log(event.target.password.value)
-    }
 
     return (
         <form onSubmit={handleSubmit}>

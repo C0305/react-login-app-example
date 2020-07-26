@@ -1,5 +1,6 @@
 import React from "react";
 import LoginForm from "./login-form";
+import {withRouter} from "react-router";
 
 function Login() {
     return (
@@ -10,4 +11,4 @@ function Login() {
     );
 }
 
-export default Login
+export default withRouter(Login)

@@ -6,10 +6,17 @@ export const eurUsdRate = (state = parseFloat("1.17"), action) =>
         action.payload :
         state
 
-export const login = (state = "", action) =>
-    (action.type === C.LOG_IN) ?
-        action.payload :
-        state
+export const login = (state = "", action) => {
+    switch (action.type) {
+        case C.LOG_IN:
+            return action.payload
+        case C.LOG_OUT:
+            return ""
+        default:
+            return state
+    }
+}
+
 
 export default combineReducers({
     login

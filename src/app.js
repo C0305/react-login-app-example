@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
 function App() {
     return (
         <Router>
-            <Layout>
+            <Layout location={location}>
                 <Switch>
                     <LogInRoute exact path="/">
                         <Login/>

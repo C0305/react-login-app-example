@@ -9,6 +9,8 @@ import App from "./app"
 
 const store = storeFactory()
 
+window.store = store
+
 store.subscribe(() => {
     console.log('initial state: ', store.getState())
 })
