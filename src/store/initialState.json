@@ -1,0 +1,10 @@
+{
+  "login": "",
+  "accounts": [],
+  "transactions": [],
+  "loader": {
+    "global": false,
+    "accounts": false,
+    "transactions": false
+  }
+}
