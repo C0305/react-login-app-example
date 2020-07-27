@@ -9,3 +9,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@mixin spos() {
+  &--space-on-sides {
+    display: flex;
+    margin-top: 1.5rem;
+
+    :first-child {
+      width: 80% !important;
+      margin: 0 auto;
+    }
+  }
+}
