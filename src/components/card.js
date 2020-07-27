@@ -3,7 +3,7 @@ import React from "react";
 
 function Card({title, text, img, featured, body}) {
     return (
-        <>
+        <div>
             <div className="card">
                 <div className="card__featured">
                     {featured ? featured : (
@@ -23,7 +23,7 @@ function Card({title, text, img, featured, body}) {
                     )}
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

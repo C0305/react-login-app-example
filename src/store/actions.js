@@ -1,6 +1,6 @@
 import C from "../shared/constants"
 
-export const login = username => dispatch => {
+export const login = ({username}) => dispatch => {
     dispatch({
         type: C.LOG_IN,
         payload: username
@@ -12,18 +12,17 @@ export const logOut = dispatch => {
 }
 
 
-export const usdEuroRate = dispatch => {
-
-    // TODO: I need to fix the fetch issue
-    const getData = async () => {
-        const response = await fetch("https://exchangeratesapi.io/")
-        const data = response.json()
-        return data.rates.usd
-    }
-    getData().then(rate => dispatch({
-        type: C.EUR_USD_RATE,
-        payload: rate
-    })).catch(error => console.log(error))
-
-
+export const updateExchangeRate = dispatch => {
+    const url = "https://openexchangerates.org/api/latest.json?app_id=edcb3ee85c584de396f486a46031eab0"
+    fetch(url).then(res => {
+        if (res.base === "USD") {
+            dispatch({
+                type: C.UPDATE_EXCHANGE_RATE,
+                payload: {
+                    eur: res.rates.EUR,
+                    date: new Date().toISOString().slice(0, 10)
+                }
+            })
+        }
+    }).catch(error => console.log(error))
 }

@@ -1,8 +1,9 @@
 import React from 'react';
-import Login from "./views/login/index";
+import Login from "./components/views/login/index";
 import Layout from "./components/layout/index";
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
-import Home from "./views/home";
+import Home from "./components/views/home";
+import Transfer from "./components/views/transfer";
 import {useSelector} from "react-redux";
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
                     <PrivateRoute exact path="/home">
                         <Home/>
                     </PrivateRoute>
+                    <PrivateRoute exact path="/transfer">
+                        <Transfer/>
+                    </PrivateRoute>
                 </Switch>
             </Layout>
         </Router>
@@ -27,7 +31,7 @@ function App() {
 
 
 function LogInRoute({children, ...rest}) {
-    const loggedUser = useSelector(state => state.login);
+    const loggedUser = useSelector(state => state.userManagement);
     return (
         <Route
             {...rest}
@@ -48,7 +52,7 @@ function LogInRoute({children, ...rest}) {
 }
 
 function PrivateRoute({children, ...rest}) {
-    const loggedUser = useSelector(state => state.login);
+    const loggedUser = useSelector(state => state.userManagement);
     return (
         <Route
             {...rest}
