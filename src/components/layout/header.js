@@ -10,7 +10,7 @@ const routesArray = [
 ]
 
 const navItems = (path) => {
-    const loggedUser = useSelector(state => state.login);
+    const loggedUser = useSelector(state => state.userManagement);
     const dispatch = useDispatch()
 
     const signOff = () => {

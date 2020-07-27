@@ -1,5 +1,6 @@
-import React, {useState} from "react"
+import React from "react"
 import {PieChart} from 'react-minimal-pie-chart';
+import {useSelector} from "react-redux";
 
 const intToHexColor = (i) => {
     var c = (i & 0x00FFFFFF)
@@ -10,79 +11,63 @@ const intToHexColor = (i) => {
 }
 
 const EcPiechart = ({type, data}) => {
-    const [selected, setSelected] = useState();
-    const [focused, setFocused] = useState();
-    let pieData = []
+    const exchangeRate = useSelector(state => state.exchangeRate.eur)
+
+    let pieData
 
     if (type === "trans") {
-        let eurUsd = 1.23
-        data.forEach(({toAccount, amount: {currency, value}}) => {
-            let findAccount = false
-            pieData.forEach((item, index) => {
-                if (item.title === String(toAccount)) {
-                    findAccount = true
-                    pieData[index].value += currency === "€" ? eurUsd * value : value
+
+        let auxArr = []
+
+        data.forEach(item => {
+            let coincidence = false
+            auxArr.forEach((row, index) => {
+                coincidence = (row.title === String(item.toAccount))
+                if (item.amount.currency === "€") {
+                    auxArr[index].value += (item.amount.value / exchangeRate)
+                } else {
+                    auxArr[index].value += item.amount.value
                 }
             })
-
-            if (!findAccount) {
-                pieData.push({
-                    title: String(toAccount),
-                    value: currency === "€" ? eurUsd * value : value,
-                    color: intToHexColor(toAccount)
+            if (!coincidence) {
+                auxArr.push({
+                    title: String(item.toAccount),
+                    value: item.amount.currency === "€" ?
+                        (item.amount.value / exchangeRate) :
+                        item.amount.value,
+                    color: intToHexColor(item.toAccount)
                 })
             }
+        })
 
+        pieData = auxArr.map(item => {
+            item.title = `****${item.title.substr(item.title.length - 4)}`
+            item.value = Number(parseFloat(item.value).toFixed(2))
+            return item
         })
     } else {
         pieData = data
     }
 
-    pieData = pieData.map((entry, i) => {
-        let result = entry;
-        if (focused === i) {
-            result = {
-                ...result,
-                color: 'grey',
-            };
-        }
-        return result;
-    });
 
     const segmentsStyle = {
-        transition: 'stroke .3s',
         cursor: 'pointer'
     }
 
     const labelStyle = {
         fontSize: '5px',
         fontFamily: 'sans-serif',
-        fill: '#FFF'
+        fill: '#FFF',
+        cursor: 'pointer'
     }
 
     return (
         <PieChart radius={40}
                   lineWidth={75}
-                  label={({dataEntry}) => `#${dataEntry.title}`}
+                  label={({dataEntry}) => `${dataEntry.title}`}
                   labelStyle={labelStyle}
-                  segmentsStyle={(index) => {
-                      return index === selected
-                          ? {...segmentsStyle, strokeWidth: 35}
-                          : segmentsStyle;
-                  }}
+                  segmentsStyle={segmentsStyle}
                   segmentsTabIndex={1}
-                  onKeyDown={(event, index) => {
-                      // Enter keypress
-                      if (event.keyCode === 13) {
-                          action('CLICK')(event, index);
-                          console.log('CLICK', {event, index});
-                          setSelected(selected === index ? undefined : index);
-                      }
-                  }}
-                  onFocus={(_, index) => {
-                      setFocused(index);
-                  }}
-                  onBlur={() => setFocused(undefined)}
                   data={pieData}/>
     )
 }

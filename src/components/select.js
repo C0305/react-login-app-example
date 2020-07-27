@@ -12,10 +12,12 @@ const EcSelect = forwardRef(({data, className, onChange, defaultValue = ""}, ref
                                 disabled>
                             Pick one option
                         </option>
-                        {data.map(({name, value}) => {
-                            <option value={value ? value : name}>
-                                {name}
-                            </option>
+                        {data.map((item, index) => {
+                            return (
+                                <option key={index} value={item.value}>
+                                    {item.name}
+                                </option>
+                            )
                         })}
                     </>
                 ) : (

@@ -19,7 +19,11 @@
   padding: .2rem 2.5rem;
   font-size: 14px;
   border-radius: 4px;
-  @include centerer;
+
+
+  &__center {
+    @include centerer;
+  }
 
   span {
     font-size: $elements-font-size;

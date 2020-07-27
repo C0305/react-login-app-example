@@ -11,10 +11,6 @@ const store = storeFactory()
 
 window.store = store
 
-store.subscribe(() => {
-    console.log('initial state: ', store.getState())
-})
-
 ReactDOM.render(
     <Provider store={store}>
         <App/>
