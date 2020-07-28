@@ -1,8 +1,8 @@
-import React, {useEffect, useRef} from "react";
+import React, {useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {withRouter} from "react-router";
 
-import {createTransfer, updateExchangeRate} from "../../store/actions";
+import {createTransfer} from "../../store/actions";
 import Card from "../card";
 import EcPiechart from "../pie-chart";
 import Ecinput from "../input";
@@ -75,8 +75,6 @@ const TransferForm = (selectData) => {
 }
 
 const Transfer = () => {
-    const dispatch = useDispatch()
-    const exchangeRate = useSelector(state => state.exchangeRate);
     const transactions = useSelector(state => state.transactions)
     const balance = useSelector(state => state.balance)
 
@@ -120,10 +118,6 @@ const Transfer = () => {
         }
     ]
 
-    useEffect(() => {
-        if (exchangeRate.date !== new Date().toISOString().slice(0, 10))
-            dispatch(updateExchangeRate)
-    }, [])
 
     return (
         <>
