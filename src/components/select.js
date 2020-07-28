@@ -1,9 +1,9 @@
 import React, {forwardRef} from "react"
 
-const EcSelect = forwardRef(({data, className, onChange, defaultValue = ""}, ref) => {
+const EcSelect = forwardRef(({data, className, defaultValue = ""}, ref) => {
     return (
         <div className={`select__container ${className}`}>
-            <select ref={ref} defaultValue={defaultValue} className="ec-select" onChange={onChange}>
+            <select ref={ref} defaultValue={defaultValue} className="ec-select">
 
                 {data ? (
                     <>

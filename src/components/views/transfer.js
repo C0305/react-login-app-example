@@ -42,6 +42,7 @@ const TransferForm = (selectData) => {
                     currency: balance[index].balance.currency,
                     index
                 }
+                console.log("payload")
                 dispatch(createTransfer(payload))
                 cleanForm()
             }

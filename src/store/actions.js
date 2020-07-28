@@ -40,6 +40,8 @@ export const createTransfer = ({fromAccount, toAccount, amount, currency, index}
         },
         sentAt: date.toISOString()
     }
+    console.log('go to the action')
+
     fetchMock.post("/api", res);
     fetch("/api", {
         method: 'POST',
@@ -51,6 +53,7 @@ export const createTransfer = ({fromAccount, toAccount, amount, currency, index}
     }).then(r => {
         const response = r.json()
         response.then(data => {
+            console.log('inside the then')
             console.log(data)
             dispatch({
                 type: C.CREATE_TRANSACTION,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from "./header";
 import {useDispatch, useSelector} from "react-redux";
 import {updateExchangeRate} from "../../store/actions";
