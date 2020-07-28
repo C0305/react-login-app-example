@@ -37,3 +37,26 @@
     border-color: #ebeef5;
   }
 }
+
+.blue-btn {
+  background-color: #409eff !important;
+  border-color: #409eff;
+  color: #fff;
+
+  &:hover {
+    background: #66b1ff;
+    border-color: #66b1ff;
+    color: #fff;
+  }
+}
+
+.light-blue-btn {
+  background-color: rgba(64, 158, 255, 0.55) !important;
+  color: #fff !important;
+
+  &:hover {
+    background: #66b1ff;
+    border-color: #66b1ff;
+    color: #fff;
+  }
+}

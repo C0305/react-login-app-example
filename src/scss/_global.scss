@@ -49,7 +49,9 @@ main {
 .login {
   position: relative;
 
+
   &__container {
+
     width: 34rem;
     height: 25rem;
     @include centerer;
@@ -179,6 +181,10 @@ table {
   form {
     .button {
       margin: 0 5px;
+
+      .submit {
+        background: dodgerblue;
+      }
     }
   }
 

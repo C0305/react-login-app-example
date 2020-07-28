@@ -75,7 +75,7 @@ const LoginForm = () => {
                      placeholder="Password"
                      className="is-full-width ec-input--space-on-sides"/>
             <div className="item">
-                <EcButton className="button__center" type="submit" disabled={isFormValid} text="Enter"/>
+                <EcButton className="button__center light-blue-btn" type="submit" disabled={isFormValid} text="Enter"/>
             </div>
         </form>
     )

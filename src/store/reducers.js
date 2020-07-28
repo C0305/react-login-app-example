@@ -36,7 +36,7 @@ export const balance = (state = balanceMock, action) => {
                     const auxObj = JSON.parse(JSON.stringify(item))
                     console.log(auxObj)
                     auxObj.balance.value = parseFloat(
-                        action.payload.amount - auxObj.balance.value
+                        auxObj.balance.value - action.payload.amount
                     ).toFixed(2)
                     return auxObj
                 }

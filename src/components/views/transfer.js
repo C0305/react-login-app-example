@@ -67,7 +67,7 @@ const TransferForm = (selectData) => {
             <div className="is-full-width is-padding-top-2">
                 <div className="is-80-width is-80-width--center is-flex is-flex--row-reverse">
                     <EcButton type="button" onClick={() => cleanForm} text="Cancel"/>
-                    <EcButton type="submit" text="Transfer"/>
+                    <EcButton type="submit" className={"blue-btn"} text="Transfer"/>
                 </div>
             </div>
         </form>
