@@ -31,8 +31,6 @@ Taking a look at the code should make this more clear!
 
 ## Getting started
 
-You can view a live demo over at
-
 To get the frontend running locally:
 
 - Clone this repo
